@@ -9,12 +9,13 @@ export default class Tasks {
     const tasksContainer = document.querySelector('.tasks');
     tasksContainer.innerHTML = '';
     this.tasks.forEach((task) => {
+      const { index, completed, description } = task; // Destructuring task object
       const li = document.createElement('li');
       li.classList.add('task');
       li.innerHTML = `
-        <input type="checkbox" data-index="${task.index}" ${task.completed ? 'checked' : ''}>
+        <input type="checkbox" data-index="${index}" ${task.completed ? 'checked' : ''}>
         <p class="task-description ${task.completed ? 'completed' : ''}">${task.description}</p>
-        <div class="delete-container" data-index="${task.index}">
+        <div class="delete-container" data-index="${index}">
           <i class="material-icons more-vert">more_vert</i>
           <div class="delete"><i class="material-icons">delete</i></div>
         </div>
@@ -23,19 +24,19 @@ export default class Tasks {
 
       const checkboxElement = li.querySelector('input[type="checkbox"]');
       checkboxElement.addEventListener('change', () => {
-        this.toggleTaskCompletion(task.index);
+        this.toggleTaskCompletion(index);
         this.updateLocalStorage();
         this.renderTasks();
       });
 
       const descriptionElement = li.querySelector('.task-description');
       descriptionElement.addEventListener('click', () => {
-        this.editTaskDescription(descriptionElement, task.index);
+        this.editTaskDescription(descriptionElement, index);
       });
 
       const deleteIcon = li.querySelector('.delete');
       deleteIcon.addEventListener('click', () => {
-        this.deleteTask(task.index);
+        this.deleteTask(index);
         this.updateLocalStorage();
         this.renderTasks();
       });
