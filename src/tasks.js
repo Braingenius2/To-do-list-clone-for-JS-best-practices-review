@@ -13,8 +13,8 @@ export default class Tasks {
       const li = document.createElement('li');
       li.classList.add('task');
       li.innerHTML = `
-        <input type="checkbox" data-index="${index}" ${task.completed ? 'checked' : ''}>
-        <p class="task-description ${task.completed ? 'completed' : ''}">${task.description}</p>
+        <input type="checkbox" data-index="${index}" ${completed ? 'checked' : ''}>
+        <p class="task-description ${completed ? 'completed' : ''}">${description}</p>
         <div class="delete-container" data-index="${index}">
           <i class="material-icons more-vert">more_vert</i>
           <div class="delete"><i class="material-icons">delete</i></div>
